@@ -17,7 +17,7 @@ r_count = sheet.nrows
 print('Row count: ', r_count)
 
 x = 0
-y = 27
+y = 11
 x1 = 1
 y1 = 0
 
@@ -53,13 +53,10 @@ while y <= r_count:
 
             print('Host: Not found! Owner: ', respp5)
 
-
             y = y + 1
 
     except ipwhois.exceptions.IPDefinedError as e:
 
-        err = '%s' % e
-
-        print(' - ', err)
+        print(' - ', '%s' % e)
 
         y = y + 1

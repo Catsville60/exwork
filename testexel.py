@@ -17,7 +17,7 @@ r_count = sheet.nrows
 print('Row count: ', r_count)
 
 x = 0
-y = 27
+y = 11
 x1 = 1
 y1 = 0
 
