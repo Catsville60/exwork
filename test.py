@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QApplication
 from PyQt5.QtCore import QCoreApplication
 
 
-rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/Статистика. Васильченко. 21-22.03.2019.xls',
+rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/exel.xls',
                         formatting_info=True)
 sheet = rb.sheet_by_index(0)
 vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
