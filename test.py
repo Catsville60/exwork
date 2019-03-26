@@ -22,13 +22,12 @@ y = 11
 x1 = 1
 y1 = 0
 
-socket.setdefaulttimeout(2)
+
 
 while y <= r_count:
     try:
         try:
 
-            socket.setdefaulttimeout(2)
             ais = socket.gethostbyaddr((vals[y])[x])
 
             w = IPWhois((vals[y])[x])
