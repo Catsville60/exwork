@@ -3,13 +3,9 @@ import socket
 import xlrd
 from ipwhois import IPWhois
 import ipwhois
-import signal
-
-import time
-from pprint import pprint
 
 
-rb = xlrd.open_workbook('C:/Users/Пользователь/PycharmProjects/untitled1/exel.xls',
+rb = xlrd.open_workbook('C:/Users/Пользователь/PycharmProjects/exwork/exel.xls',
                         formatting_info=True)
 sheet = rb.sheet_by_index(0)
 vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
