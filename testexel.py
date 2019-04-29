@@ -35,7 +35,7 @@ while int(maxsheets) >= p:
         resp4 = resp3.get('contact')
         resp5 = resp4.get('name')
 
-        print('Owner: ', resp5)
+        print(resp5)
 
         y = y + 1
         if int((vals[y])[2]) <= 1.0:
