@@ -17,8 +17,6 @@ rb = xlrd.open_workbook('C:/Users/Пользователь/PycharmProjects/exwor
 maxsheets = rb.nsheets
 print('Sheets count: ', maxsheets)
 
-
-
 while int(maxsheets) >= p:
     sheet = rb.sheet_by_index(p)
     vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
@@ -62,6 +60,4 @@ while int(maxsheets) >= p:
 
 print("--- %s seconds ---" % (time.time() - start_time), "Sheet: ", p)
 
-# TODO Прпробовать перепелить код на перл под питон
-# TODO Разобраться с получением инфы о посещениях по ip
 # TODO Разобраться с openpyxl
