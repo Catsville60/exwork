@@ -12,12 +12,12 @@ y1 = 0
 
 start_time = time.time()
 
-rb = xlrd.open_workbook('C:/Users/Пользователь/PycharmProjects/exwork/exew.xls',
+rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/report.xls',
                         formatting_info=True)
 maxsheets = rb.nsheets
 print('Sheets count: ', maxsheets)
 
-while int(maxsheets) >= p:
+while int(maxsheets) != p:
     sheet = rb.sheet_by_index(p)
     vals = [sheet.row_values(rownum) for rownum in range(sheet.nrows)]
     r_count = sheet.nrows
@@ -41,7 +41,7 @@ while int(maxsheets) >= p:
             p = p + 1
             y = 11
             x = 0
-            print("--- %s seconds ---" % (time.time() - start_time), p)
+            print("--- %s seconds ---" % (time.time() - start_time), "Sheet: ", p)
             continue
         if p == int(maxsheets):
             break
@@ -58,6 +58,6 @@ while int(maxsheets) >= p:
         if p == int(maxsheets):
             break
 
-print("--- %s seconds ---" % (time.time() - start_time), "Sheet: ", p)
+print("Script is finish")
 
 # TODO Разобраться с openpyxl
