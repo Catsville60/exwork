@@ -15,7 +15,9 @@ start_time = time.time()
 rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/report.xls',
                         formatting_info=True)
 maxsheets = rb.nsheets
+print('Script is start working')
 print('Sheets count: ', maxsheets)
+
 
 while int(maxsheets) != p:
     sheet = rb.sheet_by_index(p)
@@ -23,7 +25,6 @@ while int(maxsheets) != p:
     r_count = sheet.nrows
 
     try:
-
         w = IPWhois((vals[y])[x])
         res = w.lookup_rdap(retry_count=0)
         resp = res.get('objects')
@@ -41,23 +42,16 @@ while int(maxsheets) != p:
             p = p + 1
             y = 11
             x = 0
-            print("--- %s seconds ---" % (time.time() - start_time), "Sheet: ", p)
+            print('*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*Sheet: ', p)
             continue
-        if p == int(maxsheets):
-            break
 
     except ipwhois.exceptions.IPDefinedError as e:
 
         print('Error: ', '%s' % e)
 
         y = y + 1
-        if int((vals[y])[2]) >= 1.0:
-            p = p + 1
-            print("--- %s seconds ---" % (time.time() - start_time), "Sheet: ", p)
-            continue
-        if p == int(maxsheets):
-            break
 
-print("Script is finish")
+
+print('Script is finish --- %s seconds ---' % (time.time() - start_time),)
 
 # TODO Разобраться с openpyxl
