@@ -12,7 +12,7 @@ y1 = 0
 
 start_time = time.time()
 
-rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/report.xls',
+rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/Статистика. ЦЗН. 05.11.2019.xls',
                         formatting_info=True)
 maxsheets = rb.nsheets
 print('Script is start working')
@@ -28,13 +28,9 @@ while int(maxsheets) != p:
         w = IPWhois((vals[y])[x])
         res = w.lookup_rdap(retry_count=0)
         resp = res.get('objects')
-        resp1 = list(resp.keys())
-        resp2 = resp1[0]
-        resp3 = resp.get(resp2)
-        resp4 = resp3.get('contact')
-        resp5 = resp4.get('name')
+        resp1 = res.get('asn_description')
 
-        print(resp5)
+        print(resp1)
 
         y = y + 1
         if int((vals[y])[2]) <= 1.0:
