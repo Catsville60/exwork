@@ -12,7 +12,7 @@ y1 = 0
 
 start_time = time.time()
 
-rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/Статистика. ЦЗН. 05.11.2019.xls',
+rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/Статистика.xls',
                         formatting_info=True)
 maxsheets = rb.nsheets
 print('Script is start working')
@@ -25,28 +25,31 @@ while int(maxsheets) != p:
     r_count = sheet.nrows
 
     try:
-        w = IPWhois((vals[y])[x])
-        res = w.lookup_rdap(retry_count=0)
-        resp = res.get('objects')
-        resp1 = res.get('asn_description')
-
-        print(resp1)
-
-        y = y + 1
-        if int((vals[y])[2]) <= 1.0:
-
+        if int((vals[y])[2]) <= 0.99:
             p = p + 1
             y = 11
             x = 0
+
             print('*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*Sheet: ', p)
             continue
-
-    except ipwhois.exceptions.IPDefinedError as e:
-
-        print('Error: ', '%s' % e)
+        w = IPWhois((vals[y])[x])
+        #print(y, sheet, p)
+        res = w.lookup_rdap(retry_count=0)
+        resp = res.get('objects')
+        resp1 = res.get('asn_description')
+        print(resp1)
 
         y = y + 1
 
+    except ipwhois.exceptions.IPDefinedError as e:
+
+        print('Ошибка: ', '%s' % e)
+
+        y = y + 1
+
+    except ipwhois.exceptions.HTTPLookupError as er:
+        print('Ошибка: ', '%s' % er)
+        y = y + 1
 
 print('Script is finish --- %s seconds ---' % (time.time() - start_time),)
 
