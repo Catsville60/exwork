@@ -15,9 +15,9 @@ start_time = time.time()
 rb = xlrd.open_workbook('C:/Users/Пользователь/Desktop/Статистика.xls',
                         formatting_info=True)
 maxsheets = rb.nsheets
+
 print('Script is start working')
 print('Sheets count: ', maxsheets)
-
 
 while int(maxsheets) != p:
     sheet = rb.sheet_by_index(p)
@@ -32,8 +32,8 @@ while int(maxsheets) != p:
 
             print('*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*Sheet: ', p)
             continue
+
         w = IPWhois((vals[y])[x])
-        #print(y, sheet, p)
         res = w.lookup_rdap(retry_count=0)
         resp = res.get('objects')
         resp1 = res.get('asn_description')
@@ -42,14 +42,20 @@ while int(maxsheets) != p:
         y = y + 1
 
     except ipwhois.exceptions.IPDefinedError as e:
-
-        print('Ошибка: ', '%s' % e)
-
+        print('Ошибка: IP не определен', '%s' % e)
         y = y + 1
 
     except ipwhois.exceptions.HTTPLookupError as er:
-        print('Ошибка: ', '%s' % er)
+        print('Ошибка: поиск RDAP не удался', '%s' % er)
         y = y + 1
+
+    except ipwhois.exceptions.ASNRegistryError as err:
+        print('Ошибка: поиск ASN не удался', '%s' % err)
+        y = y + 1
+
+    except ValueError:
+        print('Файл пустой')
+        break
 
 print('Script is finish --- %s seconds ---' % (time.time() - start_time),)
 
