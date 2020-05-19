@@ -30,7 +30,7 @@ while int(maxsheets) != p:
     r_count = sheet.nrows
 
     try:
-        if int((vals[y])[2]) <= 50.01:
+        if int((vals[y])[2]) <= 50:
             p = p + 1
             y = 11
             x = 0
